@@ -2,9 +2,24 @@
 
 Parser for the output of Ubiquiti device discovery responses on UDP 10001
 
-Also a fairly decent example of how to work with raw data in R
+Also a fairly decent example of how to work with raw data in R.
+
+## Scanning from R
 
 ``` r
+source("ubi-discovery-scanner.R")
+source("ubi-discovery-parser.R")
+
+res <- ubnt_discovery("IP ADDRESS OF TARGET", 10001, c(0x01, 0x00, 0x00, 0x00))
+
+ubi_parse_response(res);
+```
+
+## Using already captured data
+
+``` r
+source("ubi-discovery-parser.R")
+
 c(
   "AQAAggIACiSkPH9XF8+QRUICAAokpDx+VxfAqAUBAQAGJKQ8flcXCgAEACylqgsADEFpclJvdXRlciBIUAwABkxBUC1IUA0AD1dDVGVsLVdpRmktNTcxNw4AAQMDACJYTS5hcjcyNDAudjUuNS42LjE3NzYyLjEzMDUyOC4xNzU1EAAC5LI=",
   "AQAAsAIACiSkPGjsr6pRS8kCAAokpDxp7K/AqAEBAQAGJKQ8aOyvCgAEABdMoAsAHGNsaWVudGVfTUFSSUFfTE9VUkRFX0lUQVRVQkEMAANMTTUNABpTU0lORVRfRVhUUkVNRV9JVEFUVUJBXzAwMQ4AAQIDACJYTS5hcjcyNDAudjUuNi41LjI5MDMzLjE2MDUxNS4yMTE5EAAC6KUUABNOYW5vU3RhdGlvbiBMb2NvIE01",
